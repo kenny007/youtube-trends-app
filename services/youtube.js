@@ -18,7 +18,7 @@ export class YoutubeService {
 
     var result = [];
 
-    return axios.get('/', {params}).then(function(res){
+    return axios.get('/', {params}).then(async function(res){
       result = res.data.items;
       for (var i = 0; i < result.length; i++) {
         result[i] = {
@@ -27,7 +27,7 @@ export class YoutubeService {
           thumbnail: result[i].snippet.thumbnails.high.url,
           publishedAt: moment(result[i].snippet.publishedAt).fromNow()
         };
-        result[i] = YoutubeService.getVideoDetails(result[i]);
+        result[i] = await YoutubeService.getVideoDetails(result[i]);
       }
 
       return result;
