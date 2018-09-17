@@ -10,14 +10,29 @@ router.get('/', async (req, res) => {
   const trends = await service.getTrendingVideos();
     res.render('youtube/index', {
     title: config.title,
+    region: 'US',
+    countriesList: service.getCountriesList(),
     videos: trends
   }); 
   console.log('Fetching data --- ', trends)
 });
 
+router.get('/region/:region', async (req, res) => {
+  const trends = await service.getTrendingVideos(req.params.region);
+  res.render('youtube/index', {
+      title: config.title,
+      countriesList: service.getCountriesList(),
+      region: req.params.region,
+      videos: trends
+  });
+});
+
+
 router.get('/:videoId', async (req, res) => {
    res.render('youtube/player', {
-    title: config.title
+    title: config.title,
+    countriesList: service.getCountriesList(),
+    src: 'http://www.youtube.com/embed/' + req.params.videoId + '?autoplay=1',
   });
 });
 

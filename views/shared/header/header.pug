@@ -1,7 +1,10 @@
 div(id='page-header')
-  nav(class='navbar navbar-default navbar-fixed-top')
-    div(class='col-md-3 hidden-md-down')
-      img(class='logo', src='/images/logo.svg')
-
-    div(class='col-md-6 hidden-md-down note')
-      span Here should be implemented dropdown country select
+    nav(class='navbar navbar-default navbar-fixed-top')
+        div(class='col-md-2 hidden-md-down')
+            a(class='btn btn-primary', href='/youtube')
+                img(class='logo', src='/images/logo.svg')
+        div(class='col-md-2 hidden-md-down note')
+            span
+                select(class='form-control' , id='countrySelector', onchange="location.href='/youtube/region/' + this.options[this.selectedIndex].value")
+                    each item in countriesList
+                        option(value=item.code selected=(item.code === region)) #{item.name}
