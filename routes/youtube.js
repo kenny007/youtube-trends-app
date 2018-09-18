@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     countriesList: service.getCountriesList(),
     videos: trends
   }); 
-  console.log('Fetching data --- ', trends)
+  // console.log('Fetching data --- ', trends)
 });
 
 router.get('/region/:region', async (req, res) => {

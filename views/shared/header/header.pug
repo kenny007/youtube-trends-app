@@ -3,7 +3,7 @@ div(id='page-header')
         div(class='col-md-2 hidden-md-down')
             a(class='btn btn-primary', href='/youtube')
                 img(class='logo', src='/images/logo.svg')
-        div(class='col-md-2 hidden-md-down note')
+        div(class='col-md-4 col-md-offset-2 hidden-md-down note')
             span
                 select(class='form-control' , id='countrySelector', onchange="location.href='/youtube/region/' + this.options[this.selectedIndex].value")
                     each item in countriesList

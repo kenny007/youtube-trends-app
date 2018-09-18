@@ -2,8 +2,14 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
 chai.should();
+const expect = chai.expect;
 
 chai.use(chaiHttp);
+
+import { YoutubeService } from '../services/youtube';
+
+const service = new YoutubeService();
+
 
 describe('Server', function() {
 
@@ -25,4 +31,19 @@ describe('Server', function() {
         done();
       });
   });
+
+  it('should open /youtube/region', (done) => {
+    chai.request(server)
+        .get('/youtube/region/US')
+        .end(function (err, res) {
+            res.should.have.status(200);
+            done();
+    });
+  });
+
+   it("should get all countries", () => {
+    const countriesList = service.getCountriesList();
+    expect(typeof countriesList).to.equal('object');
+   });
+
 });
